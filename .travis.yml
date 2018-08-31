@@ -35,5 +35,3 @@ deploy:
   - ${TRAVIS_BUILD_DIR}/build/openfiledialog*
   - ${TRAVIS_BUILD_DIR}/build/selectfolderdialog*
   skip_cleanup: true
-  on:
-    branch: master
