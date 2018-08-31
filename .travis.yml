@@ -1,0 +1,46 @@
+language: c
+matrix:
+  include:
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - gcc-7
+    env:
+    - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+    - TARGET="linux"
+  - os: osx
+    osx_image: xcode8
+    env:
+    - MATRIX_EVAL="brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
+    - TARGET="osx"
+before_script:
+  - if [ "$TARGET" = "osx" ]; then
+    brew update &&
+    brew install ruby &&
+    brew install rename;
+    fi
+  - eval "${MATRIX_EVAL}"
+script:
+  - if [ "$TARGET" = "linux" ]; then
+    echo "===> Building for linux..." &&
+    cd "$TRAVIS_BUILD_DIR" &&
+    mkdir build &&
+    cd build &&
+    cmake .. &&
+    make;
+    fi
+  - if [ "$TARGET" = "osx" ]; then
+    echo "===> Building for macosx..." &&
+    cd "$TRAVIS_BUILD_DIR" &&
+    mkdir build &&
+    cd build &&
+    cmake .. &&
+    make;
+    fi
+  - eval "rename 's/openfiledialog/openfiledialog-${TARGET}/' openfiledialog*"
+  - eval "rename 's/selectfolderdialog/selectfolderdialog-${TARGET}/' selectfolderdialog*"
+
+
