@@ -27,6 +27,7 @@ script:
   && mkdir build && cd build && cmake .. && make; fi
 - eval "rename 's/openfiledialog/openfiledialog-${TARGET}/' openfiledialog*"
 - eval "rename 's/selectfolderdialog/selectfolderdialog-${TARGET}/' selectfolderdialog*"
+- cd ${TRAVIS_BUILD_DIR}/build/ && ls
 deploy:
   provider: releases
   api_key:
