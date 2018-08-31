@@ -34,5 +34,6 @@ deploy:
   file:
     - ${TRAVIS_BUILD_DIR}/build/openfiledialog*
     - ${TRAVIS_BUILD_DIR}/build/selectfolderdialog*
+  skip_cleanup: true
   on:
-    repo: DXPRESS-ECNU/dxpress-watermark-filedialog
+    branch: master
