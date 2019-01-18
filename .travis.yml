@@ -25,8 +25,7 @@ script:
   && mkdir build && cd build && cmake .. && make; fi
 - if [ "$TARGET" = "osx" ]; then echo "===> Building for macosx..." && cd "$TRAVIS_BUILD_DIR"
   && mkdir build && cd build && cmake .. && make; fi
-- eval "rename 's/openfiledialog/openfiledialog-${TARGET}/' openfiledialog*"
-- eval "rename 's/selectfolderdialog/selectfolderdialog-${TARGET}/' selectfolderdialog*"
+- eval "rename 's/dialog/dialog-${TARGET}/' *dialog*"
 - cd ${TRAVIS_BUILD_DIR}/build/ && ls
 deploy:
   provider: releases
@@ -34,8 +33,5 @@ deploy:
     secure: jPoVAbyfvyCVvPIeOISYB479t2mt1E9HRikhxX9+kvnawob6gH6I2+R6CEFDtKMR05sapjo5bguj8/kWMwSbQ+y7QvoDUtF2a6HZewtWpZigiuLDZXiENQMTscCQcnLfG1miX0hjtyZBcYrAWewUQyXfHCHu0uIAOEMn7U0RWWZJ4rUsNptJnN3mBk5iPWdUjkvXHWOAoWCm6RzYK0fp2GqWROBm0PsW1n4BtaMlU/6892JkUOJSlFDWQajGW2yFyEL6SjkrcWOC8twALzYjcimp0hYrgurvg6iZOwApDt/tR2oTOgsLjpTYIOdRL6d9krKzCCjCBdWyvHlaSELA+WZgENmayE5UxmtRJcXSbCsr8Oqq4Ob2V+4T60B6JSrZ6TwiwWbjVBkOVmdVxjFeJTmx39A1pKBxgUyFa5vQTcJRqLXntjsIrXUiILyXBvUF24KNih/0pG2YM0LAhmQKqNgicR/hctu5B0qlvBqLvB+C+6M+vyvjmfb5VgCOj2qWvwbdx+PRVhUkmFDUMi3ED2vIMSgY21vzE/1GCL9pVKNIrl7ts2YWoGkim5yW9TzLzwmU0vsXGU5ZyS/29LvrSgzQ61NV5/0YO5gNoxiq5edgTdpRYgM7Ua2jLQZU7Vop6IVZYI16UIQs9vM5AKO4tiKDrbg51+eRTezBZ0QlpT8=
   file_glob: true
   file:
-  - ${TRAVIS_BUILD_DIR}/build/openfiledialog*
-  - ${TRAVIS_BUILD_DIR}/build/selectfolderdialog*
+  - ${TRAVIS_BUILD_DIR}/build/*dialog-*
   skip_cleanup: true
-  on:
-    tags: true
