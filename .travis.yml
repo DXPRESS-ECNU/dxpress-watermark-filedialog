@@ -12,9 +12,9 @@ matrix:
     - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
     - TARGET="linux"
   - os: osx
-    osx_image: xcode8
+    osx_image: xcode10.1
     env:
-    - MATRIX_EVAL="brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
+    # - MATRIX_EVAL="brew install gcc@7 && CC=gcc-7 && CXX=g++-7"
     - TARGET="osx"
 before_script:
 - if [ "$TARGET" = "osx" ]; then brew update && brew install ruby && brew install
